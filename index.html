@@ -419,6 +419,35 @@ const VOCAB=[
 {fr:"regarder",de:"ansehen, betrachten",cat:"Unité 3",isNew:true},
 {fr:"parler avec",de:"mit jemandem sprechen",cat:"Unité 3",isNew:true},
 {fr:"avec",de:"mit",cat:"Unité 3",isNew:true},
+// 🆕 Unité 3 — Vocabulaire B7: Hobbys, Sport & Musik
+{fr:"sympa",de:"nett",cat:"Unité 3",isNew:true},
+{fr:"détester",de:"jemanden/etwas verabscheuen",cat:"Unité 3",isNew:true},
+{fr:"ça",de:"das",cat:"Unité 3",isNew:true},
+{fr:"d'accord",de:"einverstanden, o.k.",cat:"Unité 3",isNew:true},
+{fr:"alors",de:"nun, jetzt, dann",cat:"Unité 3",isNew:true},
+{fr:"le rock",de:"Rock, Rockmusik",cat:"Unité 3",isNew:true},
+{fr:"le foot",de:"der Fußball (Sportart)",cat:"Unité 3",isNew:true},
+{fr:"un vélo",de:"ein Fahrrad",cat:"Unité 3",isNew:true},
+{fr:"la techno",de:"Techno (Musikstil)",cat:"Unité 3",isNew:true},
+{fr:"le rap",de:"Rap (Musikstil)",cat:"Unité 3",isNew:true},
+{fr:"la gymnastique",de:"das Turnen, die Gymnastik",cat:"Unité 3",isNew:true},
+{fr:"classique",de:"klassisch",cat:"Unité 3",isNew:true},
+{fr:"le cinéma",de:"Kino",cat:"Unité 3",isNew:true},
+{fr:"la natation",de:"Schwimmen",cat:"Unité 3",isNew:true},
+{fr:"la télé",de:"Fernsehen",cat:"Unité 3",isNew:true},
+{fr:"le roller",de:"Inlinerfahren",cat:"Unité 3",isNew:true},
+{fr:"l'athlétisme",de:"Leichtathletik",cat:"Unité 3",isNew:true},
+{fr:"le basket",de:"Basketball",cat:"Unité 3",isNew:true},
+{fr:"l'ordi",de:"Computer (Kurzform)",cat:"Unité 3",isNew:true},
+{fr:"la gym",de:"Turnen (Kurzform)",cat:"Unité 3",isNew:true},
+{fr:"la musique classique",de:"die klassische Musik",cat:"Unité 3",isNew:true},
+// 🆕 Unité 3 — Konjugation détester
+{fr:"je déteste",de:"ich hasse / verabscheue",cat:"Unité 3",isNew:true},
+{fr:"tu détestes",de:"du hasst / verabscheust",cat:"Unité 3",isNew:true},
+{fr:"il/elle déteste",de:"er/sie hasst / verabscheut",cat:"Unité 3",isNew:true},
+{fr:"nous détestons",de:"wir hassen / verabscheuen",cat:"Unité 3",isNew:true},
+{fr:"vous détestez",de:"ihr hasst / verabscheut",cat:"Unité 3",isNew:true},
+{fr:"ils/elles détestent",de:"sie hassen / verabscheuen",cat:"Unité 3",isNew:true},
 ];
 // ===== 📐 GRAMMAR EXERCISES — ADD NEW EXERCISES HERE =====
 const GRAMMAR=[
@@ -446,6 +475,24 @@ const GRAMMAR=[
 {type:"choice",prompt:"Voilà Clément. ___ est de Toulouse.",options:["Il","Elle"],answer:"Il",hint:"Clément = Junge",topic:"il/elle"},
 {type:"choice",prompt:"Voilà Pierre. ___ est de Brest.",options:["Il","Elle"],answer:"Il",hint:"Pierre = Junge",topic:"il/elle"},
 {type:"choice",prompt:"Voilà Joséphine. ___ est de Paris.",options:["Il","Elle"],answer:"Elle",hint:"Joséphine = Mädchen",topic:"il/elle"},
+// 🆕 Unité 3 — détester
+{type:"fill",prompt:"Je ___ le rap.",answer:"déteste",hint:"détester: ich hasse = ?",topic:"détester"},
+{type:"fill",prompt:"Tu ___ la techno ?",answer:"détestes",hint:"détester: du hasst = ?",topic:"détester"},
+{type:"fill",prompt:"Il ___ le foot.",answer:"déteste",hint:"détester: er hasst = ?",topic:"détester"},
+{type:"fill",prompt:"Nous ___ la gymnastique.",answer:"détestons",hint:"détester: wir hassen = ?",topic:"détester"},
+{type:"fill",prompt:"Vous ___ le roller ?",answer:"détestez",hint:"détester: ihr hasst = ?",topic:"détester"},
+{type:"fill",prompt:"Elles ___ le rock.",answer:"détestent",hint:"détester: sie hassen = ?",topic:"détester"},
+// 🆕 Unité 3 — aimer
+{type:"fill",prompt:"Tu ___ le rugby, Alex ?",answer:"aimes",hint:"aimer: du magst = ?",topic:"aimer"},
+{type:"fill",prompt:"Moi, j' ___ le sport et la musique.",answer:"aime",hint:"aimer: ich mag = ?",topic:"aimer"},
+// 🆕 Unité 3 — habiter
+{type:"fill",prompt:"Tu ___ ici ?",answer:"habites",hint:"habiter: du wohnst = ?",topic:"habiter"},
+{type:"fill",prompt:"Moi, j' ___ rue Truffaut.",answer:"habite",hint:"habiter: ich wohne = ?",topic:"habiter"},
+{type:"fill",prompt:"Vous ___ où ?",answer:"habitez",hint:"habiter: ihr wohnt = ?",topic:"habiter"},
+// 🆕 Unité 3 — Fragen & Antworten (Auf einen Blick)
+{type:"fill",prompt:"Qu'est-ce que c'est en français ? — C'est ___ crayon.",answer:"un",hint:"crayon = männlich",topic:"un/une"},
+{type:"fill",prompt:"Que fait Léo ? — Il ___ un carton.",answer:"porte",hint:"porter = tragen",topic:"porter"},
+{type:"fill",prompt:"Tu ___ le rugby ? — Oui, et j'aime aussi le judo.",answer:"aimes",hint:"aimer: du magst",topic:"aimer"},
 ];
 // ===== 🗣️ DIALOGUES — ADD NEW SCENARIOS HERE =====
 const DIALOGUES=[
@@ -511,6 +558,31 @@ const DIALOGUES=[
 {who:"npc",name:"Alex",fr:"Malabar est le chien de Léo. Et c'est l'ami de Malou.",de:"Malabar ist der Hund von Léo. Und er ist der Freund von Malou."},
 {who:"npc",name:"Mme Latière",fr:"Un chien ici ? Et le chat ? Zut ! C'est la catastrophe !",de:"Ein Hund hier? Und die Katze? Mist! Das ist die Katastrophe!"},
 ]},
+{id:"jerome",title:"👋 Salut, Jérôme!",desc:"Atelier B – Unité 3",turns:[
+// Szene 1: Vor dem Laden
+{who:"npc",name:"Marie",fr:"Tu habites ici ?",de:"Wohnst du hier?"},
+{who:"you",hint:"Sag: Nein, ich wohne in der Rue Nollet.",accept:["non, moi, j'habite rue nollet","non, j'habite rue nollet","j'habite rue nollet"]},
+{who:"npc",name:"Alex",fr:"Et vous, vous habitez où ?",de:"Und ihr, wo wohnt ihr?"},
+{who:"you",hint:"Sag: Ich wohne in der Rue Truffaut.",accept:["moi, j'habite rue truffaut","j'habite rue truffaut"]},
+{who:"npc",name:"Léo",fr:"Ah oui ? Moi aussi !",de:"Ah ja? Ich auch!"},
+// Szene 2: T-Shirt
+{who:"npc",name:"Marie",fr:"Tiens, un t-shirt super. Alors, tu aimes le rugby, Alex ?",de:"Sieh mal, ein super T-Shirt. Also, magst du Rugby, Alex?"},
+{who:"you",hint:"Sag: Ja, und auch Judo.",accept:["oui, et aussi le judo","oui, et le judo","oui"]},
+{who:"npc",name:"Marie",fr:"Et toi Léo, qu'est-ce que tu aimes ?",de:"Und du Léo, was magst du?"},
+{who:"you",hint:"Sag: Ich mag Sport und Musik.",accept:["moi, j'aime le sport et la musique","j'aime le sport et la musique","j'aime le sport","le sport et la musique"]},
+// Szene 3: Jérôme kommt
+{who:"npc",name:"Alex",fr:"Oh, voilà Jérôme !",de:"Oh, da ist Jérôme!"},
+{who:"npc",name:"Jérôme",fr:"Salut !",de:"Hallo!"},
+{who:"you",hint:"Frag: Bist du ein Freund von Alex?",accept:["salut, tu es un copain d'alex","tu es un copain d'alex","tu es un copain d'alex ?"]},
+{who:"npc",name:"Jérôme",fr:"Non. Nous sommes frère et sœur.",de:"Nein. Wir sind Bruder und Schwester."},
+{who:"npc",name:"Léo",fr:"Vous êtes frère et … ?",de:"Ihr seid Bruder und …?"},
+{who:"npc",name:"Jérôme",fr:"Oui, on est frère et sœur. Elle est sympa, Alexandra, non ?",de:"Ja, wir sind Bruder und Schwester. Sie ist nett, Alexandra, oder?"},
+// Szene 4: Alex korrigiert
+{who:"npc",name:"Alex",fr:"« Alexandra », je déteste ça. Je m'appelle Alex ! D'accord ?",de:"«Alexandra», ich hasse das. Ich heiße Alex! Einverstanden?"},
+{who:"you",hint:"Sag: Einverstanden, einverstanden.",accept:["d'accord, d'accord","d'accord"]},
+{who:"npc",name:"Alex",fr:"Alors, au revoir, Jérôme !",de:"Also, auf Wiedersehen, Jérôme!"},
+{who:"npc",name:"Jérôme",fr:"Salut, Alex … andra !",de:"Tschüss, Alex…andra!"},
+]},
 ];
 // ===== 🚦 BILAN SKILLS =====
 const BILAN=[
@@ -525,6 +597,8 @@ const BILAN=[
 {id:"nums",text:"Ich kenne die Zahlen 0–100"},
 {id:"school",text:"Ich kenne die Schulsachen auf Französisch"},
 {id:"animals",text:"Ich kenne Tiere auf Französisch"},
+{id:"hobbys",text:"Ich kann über Hobbys und Sport sprechen (aimer/détester)"},
+{id:"habiter",text:"Ich kann sagen, wo ich wohne (habiter)"},
 ];
 // ===== 🔧 APP STATE & HELPERS =====
 let mastered=JSON.parse(localStorage.getItem('fr_mastered')||'{}');
