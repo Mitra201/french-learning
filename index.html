@@ -93,7 +93,31 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 .dl-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
 .dl-timer{width:100%;max-width:300px;height:6px;background:#E0E0E0;border-radius:6px;margin:8px auto;overflow:hidden}
 .dl-timer-fill{height:100%;background:linear-gradient(90deg,var(--p),#A78BFA);border-radius:6px;transition:width .1s linear}
-@media(max-width:600px){.hd h1{font-size:1.2em}.nb{padding:5px 8px;font-size:.7em}.fw{font-size:1.3em}.wl-grid{grid-template-columns:1fr}.home-grid{grid-template-columns:repeat(2,1fr)}.prg-bar{flex-direction:column;align-items:center;gap:4px}}
+/* 📖 DIALOG LESEN (Reading Mode) */
+.rd-scene{background:#fff;border-radius:var(--r);padding:18px;margin:14px 0;box-shadow:var(--sh)}
+.rd-scene-hd{font-weight:800;font-size:1.05em;color:var(--p);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.rd-scene-hd .scene-num{background:var(--p);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85em;flex-shrink:0}
+.rd-scene-desc{color:var(--tl);font-size:.88em;font-style:italic;margin-bottom:12px;padding:6px 10px;background:#F8F4FF;border-radius:8px}
+.rd-line{display:flex;gap:10px;margin:8px 0;align-items:flex-start;padding:8px 10px;border-radius:12px;transition:all .4s}
+.rd-line.active{background:#FFF8E1;box-shadow:0 2px 12px rgba(255,152,0,.2)}
+.rd-line.done{opacity:.5}
+.rd-line.speaking{background:#E3F2FD;box-shadow:0 2px 12px rgba(33,150,243,.2)}
+.rd-line.repeat-time{background:#FFF3E0;box-shadow:0 2px 12px rgba(255,152,0,.15)}
+.rd-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.3em;flex-shrink:0;font-weight:700;color:#fff}
+.rd-body{flex:1;min-width:0}
+.rd-name{font-weight:700;font-size:.78em;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.rd-fr{font-size:1.05em;font-weight:600;color:var(--t);line-height:1.4;cursor:pointer}
+.rd-fr:hover{color:var(--p)}
+.rd-de{font-size:.88em;color:var(--tl);font-style:italic;margin-top:3px;opacity:0;transition:opacity .4s;max-height:0;overflow:hidden;transition:opacity .4s,max-height .4s}
+.rd-de.show{opacity:1;max-height:60px}
+.rd-repeat{font-size:.78em;color:#FF9800;font-weight:600;margin-top:4px;opacity:0;transition:opacity .3s}
+.rd-repeat.show{opacity:1}
+.rd-progress{width:100%;height:4px;background:#E0E0E0;border-radius:4px;margin:12px 0 6px;overflow:hidden}
+.rd-progress-fill{height:100%;background:linear-gradient(90deg,var(--ok),#69F0AE);border-radius:4px;transition:width .3s}
+.rd-controls{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:12px 0}
+.rd-timer{width:100%;max-width:300px;height:6px;background:#E0E0E0;border-radius:6px;margin:8px auto;overflow:hidden}
+.rd-timer-fill{height:100%;background:linear-gradient(90deg,#FF9800,#FFB74D);border-radius:6px;transition:width .05s linear}
+@media(max-width:600px){.hd h1{font-size:1.2em}.nb{padding:5px 8px;font-size:.7em}.fw{font-size:1.3em}.wl-grid{grid-template-columns:1fr}.home-grid{grid-template-columns:repeat(2,1fr)}.prg-bar{flex-direction:column;align-items:center;gap:4px}.rd-avatar{width:32px;height:32px;font-size:1em}}
 </style></head><body>
 <div class="hd"><h1>🇫🇷 Französisch Lernen</h1><p>Unité 1, 2 &amp; 3 — Prüfungsvorbereitung</p></div>
 <div class="nv">
@@ -109,6 +133,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 <button class="nb" onclick="go('numbers')">🔢 Zahlen</button>
 <button class="nb" onclick="go('practice')">🔄 Üben</button>
 <button class="nb" onclick="go('dlglisten')">🎧 Dialog hören</button>
+<button class="nb" onclick="go('dlgread')">📖 Dialog lesen</button>
 </div>
 <div class="pb"><div class="pf" id="pbar" style="width:0%"></div></div>
 <div class="sr">
@@ -131,6 +156,7 @@ body{font-family:'Segoe UI',Tahoma,sans-serif;background:var(--bg);color:var(--t
 <div class="home-card" onclick="go('numbers')"><div class="hc-icon">🔢</div><div class="hc-title">Zahlen</div></div>
 <div class="home-card" onclick="go('practice')"><div class="hc-icon">🔄</div><div class="hc-title">Weiter üben</div></div>
 <div class="home-card" onclick="go('dlglisten')"><div class="hc-icon">🎧</div><div class="hc-title">Dialog hören</div></div>
+<div class="home-card" onclick="go('dlgread')"><div class="hc-icon">📖</div><div class="hc-title">Dialog lesen</div></div>
 </div>
 <p style="margin-top:14px">
 <button class="btn btn-p btn-sm" onclick="exportProgress()">💾 Fortschritt speichern</button>
@@ -224,6 +250,33 @@ Geschwindigkeit: <button class="btn btn-o btn-sm" onclick="setDlgSpeed(0.7)">Lan
 <button class="btn btn-o btn-sm" onclick="setDlgSpeed(0.85)">Normal</button>
 </div>
 </div></div>
+<!-- 📖 DIALOG LESEN (Reading Mode) -->
+<div class="sc" id="dlgread">
+<div class="card"><h2>📖 Dialog lesen &amp; nachsprechen</h2>
+<p>Wähle einen Dialog. Lies mit, hör zu, und sprich jeden Satz nach! 🔊</p>
+<p style="font-size:.82em;color:var(--tl)">Das Tool liest jeden Satz vor, zeigt dann die Übersetzung und gibt dir Zeit zum Nachsprechen.</p>
+</div>
+<div class="ct2" id="rdDialogList"></div>
+<div id="rdDialogArea" style="display:none">
+<div class="card">
+<div class="rd-progress"><div class="rd-progress-fill" id="rdProgressFill" style="width:0%"></div></div>
+<div class="rd-timer"><div class="rd-timer-fill" id="rdTimerFill" style="width:0%"></div></div>
+<div id="rdScenes"></div>
+<div class="rd-controls" style="margin-top:16px">
+<button class="btn btn-p btn-sm" id="rdPlayBtn" onclick="rdPlay()">▶️ Start</button>
+<button class="btn btn-o btn-sm" onclick="rdPause()">⏸️ Pause</button>
+<button class="btn btn-o btn-sm" onclick="rdRestart()">🔄 Neustart</button>
+<button class="btn btn-o btn-sm" id="rdRepeatBtn" onclick="rdRepeatLine()">🔁 Satz wiederholen</button>
+</div>
+<div style="margin-top:10px;text-align:center;font-size:.82em;color:var(--tl)">
+Pause: <button class="btn btn-o btn-sm" onclick="setRdPause(3)">3s</button>
+<button class="btn btn-o btn-sm" onclick="setRdPause(5)">5s</button>
+<button class="btn btn-o btn-sm" onclick="setRdPause(8)">8s</button>
+Geschwindigkeit: <button class="btn btn-o btn-sm" onclick="setRdSpeed(0.7)">Langsam</button>
+<button class="btn btn-o btn-sm" onclick="setRdSpeed(0.85)">Normal</button>
+</div>
+</div>
+</div>
 </div>
 <script>
 // ===== 📚 VOCABULARY — ADD NEW WORDS HERE =====
@@ -627,10 +680,10 @@ document.querySelectorAll('.nb').forEach(b=>{if(b.textContent.includes(secEmoji(
 if(sec==='list')renderList();if(sec==='flash')initFlash();if(sec==='write')initWrite();
 if(sec==='speak')initSpeak();if(sec==='dialog')initDlgList();if(sec==='grammar')initGrammar();
 if(sec==='exam'){$('examStart').style.display='';$('examArea').innerHTML='';}
-if(sec==='done')renderDone();if(sec==='practice')renderPractice();if(sec==='numbers')initNumbers();if(sec==='dlglisten')initDlgListen();
+if(sec==='done')renderDone();if(sec==='practice')renderPractice();if(sec==='numbers')initNumbers();if(sec==='dlglisten')initDlgListen();if(sec==='dlgread')initDlgRead();
 window.scrollTo(0,0);
 }
-function secEmoji(s){return{home:'🏠',list:'📖',flash:'📇',write:'✍️',speak:'🎤',dialog:'🗣️',grammar:'📐',exam:'📝',done:'✅',practice:'🔄',numbers:'🔢',dlglisten:'🎧'}[s]||''}
+function secEmoji(s){return{home:'🏠',list:'📖',flash:'📇',write:'✍️',speak:'🎤',dialog:'🗣️',grammar:'📐',exam:'📝',done:'✅',practice:'🔄',numbers:'🔢',dlglisten:'🎧',dlgread:'📖'}[s]||''}
 // ===== 🔊 SPEECH =====
 function speak(text){const u=new SpeechSynthesisUtterance(text.replace(/[!?\.]/g,''));u.lang='fr-FR';u.rate=.85;speechSynthesis.speak(u);}
 function accentRow(cid,iid){
@@ -904,6 +957,122 @@ function dlgListenPause(){dlgListenPaused=true;speechSynthesis.cancel();if(dlgLi
 function dlgListenRestart(){dlgListenPaused=false;speechSynthesis.cancel();if(dlgListenTimer)clearInterval(dlgListenTimer);if(dlgListenDlg)startDlgListen(dlgListenDlg);}
 function setDlgPause(s){dlgPauseSec=s;}
 function setDlgSpeed(r){dlgSpeechRate=r;}
+// ===== 📖 DIALOG LESEN (READING MODE) =====
+const READING_DIALOGS=[
+{id:"jerome",title:"👋 Salut, Jérôme!",desc:"Atelier B – Unité 3",
+scenes:[
+{num:1,title:"Vor dem Laden",desc:"Léo et Marie sont devant le magasin de Mme Latière. Ils parlent avec Alex.",
+lines:[
+{name:"Marie",fr:"Tu habites ici ?",de:"Wohnst du hier?"},
+{name:"Alex",fr:"Dans le magasin ? Non, moi, j'habite rue Nollet. Et vous, vous habitez où ?",de:"Im Geschäft? Nein, ich wohne in der Rue Nollet. Und ihr, wo wohnt ihr?"},
+{name:"Marie",fr:"Moi, j'habite rue Truffaut.",de:"Ich wohne in der Rue Truffaut."},
+{name:"Léo",fr:"Ah oui ? Moi aussi !",de:"Ah ja? Ich auch!"},
+]},
+{num:2,title:"Das T-Shirt",desc:"Marie sieht ein Rugby-T-Shirt und fragt nach Hobbys.",
+lines:[
+{name:"Marie",fr:"Tiens, un t-shirt super. Alors, tu aimes le rugby, Alex ?",de:"Sieh mal, ein super T-Shirt. Also, magst du Rugby, Alex?"},
+{name:"Alex",fr:"Oui, et aussi le judo.",de:"Ja, und auch Judo."},
+{name:"Marie",fr:"Et toi Léo, qu'est-ce que tu aimes ?",de:"Und du Léo, was magst du?"},
+{name:"Léo",fr:"Moi, j'aime le sport et euh … la musique.",de:"Ich mag Sport und äh … Musik."},
+]},
+{num:3,title:"Jérôme kommt",desc:"Alex stellt ihren Bruder Jérôme vor.",
+lines:[
+{name:"Alex",fr:"Oh, voilà Jérôme !",de:"Oh, da ist Jérôme!"},
+{name:"Jérôme",fr:"Salut !",de:"Hallo!"},
+{name:"Marie",fr:"Salut, tu es un copain d'Alex ?",de:"Hallo, bist du ein Freund von Alex?"},
+{name:"Jérôme",fr:"Non. Nous sommes frère et sœur.",de:"Nein. Wir sind Bruder und Schwester."},
+{name:"Léo",fr:"Vous êtes frère et … ?",de:"Ihr seid Bruder und …?"},
+{name:"Jérôme",fr:"Oui, on est frère et sœur. Elle est sympa, Alexandra, non ?",de:"Ja, wir sind Bruder und Schwester. Sie ist nett, Alexandra, oder?"},
+]},
+{num:4,title:"Alex korrigiert",desc:"Alex mag ihren vollen Namen nicht!",
+lines:[
+{name:"Alex",fr:"« Alexandra », je déteste ça. Je m'appelle Alex ! D'accord ?",de:"«Alexandra», ich hasse das. Ich heiße Alex! Einverstanden?"},
+{name:"Jérôme",fr:"D'accord, d'accord.",de:"Einverstanden, einverstanden."},
+{name:"Alex",fr:"Alors, au revoir, Jérôme !",de:"Also, auf Wiedersehen, Jérôme!"},
+{name:"Jérôme",fr:"Salut, Alex … andra !",de:"Tschüss, Alex…andra!"},
+]},
+]},
+{id:"voila-read",title:"📖 Voilà Alex",desc:"Unité 3 Atelier A",
+scenes:[
+{num:1,title:"Im Laden",desc:"Léo sucht seinen Hund im Laden.",
+lines:[
+{name:"Léo",fr:"Malabar, non ! Viens ici !",de:"Malabar, nein! Komm her!"},
+{name:"Léo",fr:"Bonjour, … euh, pardon … je cherche Malabar.",de:"Hallo, … äh, Entschuldigung … ich suche Malabar."},
+{name:"Alex",fr:"Malabar ? Qu'est-ce que c'est ? Une BD ?",de:"Malabar? Was ist das? Ein Comic?"},
+{name:"Léo",fr:"Non, c'est un chien.",de:"Nein, das ist ein Hund."},
+]},
+{num:2,title:"Alex arbeitet",desc:"Alex arbeitet und will ihre Ruhe.",
+lines:[
+{name:"Léo",fr:"Malabar, ah, tu es là.",de:"Malabar, ah, da bist du."},
+{name:"Alex",fr:"Chut ! Je travaille.",de:"Pst! Ich arbeite."},
+{name:"Léo",fr:"Tu travailles pour l'école ?",de:"Arbeitest du für die Schule?"},
+{name:"Alex",fr:"Non, pour moi. On est en vacances !",de:"Nein, für mich. Wir haben Ferien!"},
+]},
+{num:3,title:"Großmutter kommt",desc:"Mme Latière entdeckt den Hund.",
+lines:[
+{name:"Alex",fr:"Tiens, voilà grand-mère.",de:"Schau, da ist Großmutter."},
+{name:"Mme Latière",fr:"Mais … qu'est-ce que c'est ?",de:"Aber … was ist das?"},
+{name:"Léo",fr:"Bonjour, madame, je m'appelle Léo.",de:"Guten Tag, ich heiße Léo."},
+{name:"Alex",fr:"Malabar est le chien de Léo. Et c'est l'ami de Malou.",de:"Malabar ist Léos Hund. Und er ist Malous Freund."},
+{name:"Mme Latière",fr:"Un chien ici ? Et le chat ? Zut ! C'est la catastrophe !",de:"Ein Hund hier? Und die Katze? Mist! Das ist die Katastrophe!"},
+]},
+]},
+];
+const RD_AVATARS={Marie:'👧',Léo:'👦',Alex:'👩',Jérôme:'🧑','Mme Latière':'👵'};
+const RD_COLORS={Marie:'#E91E63',Léo:'#2196F3',Alex:'#FF9800',Jérôme:'#4CAF50','Mme Latière':'#9C27B0'};
+let rdDlg=null,rdAllLines=[],rdIdx=-1,rdTimer=null,rdPaused=false,rdPauseSec=5,rdSpeechRate=0.85;
+function initDlgRead(){
+const c=$('rdDialogList');c.innerHTML='';$('rdDialogArea').style.display='none';
+READING_DIALOGS.forEach(d=>{const b=document.createElement('button');b.className='ctb';b.textContent=d.title;
+b.onclick=()=>{startDlgRead(d);};c.appendChild(b);});
+}
+function startDlgRead(dlg){
+rdDlg=dlg;rdIdx=-1;rdPaused=false;rdAllLines=[];
+$('rdDialogArea').style.display='';$('rdPlayBtn').textContent='▶️ Start';
+const area=$('rdScenes');area.innerHTML='';let lc=0;
+dlg.scenes.forEach(sc=>{
+const sd=document.createElement('div');sd.className='rd-scene';
+sd.innerHTML='<div class="rd-scene-hd"><span class="scene-num">'+sc.num+'</span> '+sc.title+'</div>'+(sc.desc?'<div class="rd-scene-desc">'+sc.desc+'</div>':'');
+sc.lines.forEach(line=>{const gi=lc++;
+const row=document.createElement('div');row.className='rd-line';row.id='rdl'+gi;
+const av=document.createElement('div');av.className='rd-avatar';av.style.background=RD_COLORS[line.name]||'#607D8B';av.textContent=RD_AVATARS[line.name]||line.name.charAt(0);
+const bd=document.createElement('div');bd.className='rd-body';
+bd.innerHTML='<div class="rd-name" style="color:'+(RD_COLORS[line.name]||'#607D8B')+'">'+line.name+'</div><div class="rd-fr" onclick="rdSayLine('+gi+')">'+line.fr+'</div><div class="rd-de" id="rdd'+gi+'">'+line.de+'</div><div class="rd-repeat" id="rdr'+gi+'">🎤 Sprich nach!</div>';
+row.appendChild(av);row.appendChild(bd);sd.appendChild(row);
+rdAllLines.push({el:row,line:line,gIdx:gi});});
+area.appendChild(sd);});
+$('rdProgressFill').style.width='0%';$('rdTimerFill').style.width='0%';
+}
+function rdSayLine(gi){const cur=rdAllLines[gi];if(!cur)return;const u=new SpeechSynthesisUtterance(cur.line.fr.replace(/[!?.«»]/g,''));u.lang='fr-FR';u.rate=rdSpeechRate;speechSynthesis.speak(u);}
+function rdPlay(){
+if(rdPaused){rdPaused=false;rdStep();return;}
+if(rdIdx>=rdAllLines.length-1){rdIdx=-1;document.querySelectorAll('.rd-line').forEach(el=>{el.classList.remove('done','active','speaking','repeat-time');});document.querySelectorAll('.rd-de').forEach(el=>el.classList.remove('show'));document.querySelectorAll('.rd-repeat').forEach(el=>el.classList.remove('show'));}
+$('rdPlayBtn').textContent='⏸️ Pause';rdStep();
+}
+function rdStep(){
+if(rdPaused)return;speechSynthesis.cancel();rdIdx++;
+if(rdIdx>=rdAllLines.length){$('rdPlayBtn').textContent='🔄 Nochmal';$('rdProgressFill').style.width='100%';return;}
+$('rdProgressFill').style.width=Math.round((rdIdx+1)/rdAllLines.length*100)+'%';
+document.querySelectorAll('.rd-line').forEach(el=>{el.classList.remove('active','speaking','repeat-time');});
+const cur=rdAllLines[rdIdx];cur.el.classList.remove('done');cur.el.classList.add('active','speaking');
+cur.el.scrollIntoView({behavior:'smooth',block:'center'});
+const deEl=$('rdd'+cur.gIdx);if(deEl)deEl.classList.remove('show');
+const repEl=$('rdr'+cur.gIdx);if(repEl)repEl.classList.remove('show');
+const u=new SpeechSynthesisUtterance(cur.line.fr.replace(/[!?.«»]/g,''));u.lang='fr-FR';u.rate=rdSpeechRate;
+u.onend=function(){if(rdPaused)return;cur.el.classList.remove('speaking');if(deEl)deEl.classList.add('show');
+setTimeout(function(){if(rdPaused)return;cur.el.classList.add('repeat-time');if(repEl)repEl.classList.add('show');
+let elapsed=0;const total=rdPauseSec*1000;const tick=50;$('rdTimerFill').style.width='0%';
+rdTimer=setInterval(function(){if(rdPaused){clearInterval(rdTimer);return;}
+elapsed+=tick;$('rdTimerFill').style.width=Math.min(100,elapsed/total*100)+'%';
+if(elapsed>=total){clearInterval(rdTimer);$('rdTimerFill').style.width='0%';cur.el.classList.remove('repeat-time');cur.el.classList.add('done');if(repEl)repEl.classList.remove('show');rdStep();}
+},tick);},800);};
+speechSynthesis.speak(u);
+}
+function rdPause(){rdPaused=true;speechSynthesis.cancel();if(rdTimer)clearInterval(rdTimer);$('rdPlayBtn').textContent='▶️ Weiter';}
+function rdRestart(){rdPaused=false;speechSynthesis.cancel();if(rdTimer)clearInterval(rdTimer);if(rdDlg)startDlgRead(rdDlg);}
+function rdRepeatLine(){if(rdIdx<0||rdIdx>=rdAllLines.length)return;rdSayLine(rdIdx);}
+function setRdPause(s){rdPauseSec=s;}
+function setRdSpeed(r){rdSpeechRate=r;}
 // ===== ⌨️ ENTER KEY =====
 document.addEventListener('keydown',e=>{if(e.key==='Enter'){
 if($('write').classList.contains('on')){if($('wnxt').style.display!=='none')wnext();else wcheck();}
